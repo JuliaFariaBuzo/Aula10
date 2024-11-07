@@ -1,7 +1,7 @@
 export default function Home(){
 
     return(
-        <div class="conteudo">
+        <div className="conteudo">
             <h1>Aula 10 - Projeto Escola com MySQL</h1>
 
             <h2>Objetivos da Aula: Conceitos de Frontend e Backend na Web</h2>
