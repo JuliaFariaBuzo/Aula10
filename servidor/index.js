@@ -31,7 +31,17 @@ app.post('/alunos',(req,res)=>{
 
     const sql = 'INSERT INTO alunos (nome, cidade, estado) VALUE (?, ?, ?)';
 
-    db.QUERY(SQL, [Nome, cidade, estado], (err, result) => {
+    db.QUERY(SQL, [nome, cidade, estado], (err, result) => {
+
+        if(err){
+            return res.status(500).json({ error: 'Erro ao cadastrar aluno!'})
+        }
+        res.status(201).json({message: 'Aluno cadastrado com sucesso!', id: result.isertId})
 
     });
-})
+});
+
+
+app.listen(PORT,()=>{
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
