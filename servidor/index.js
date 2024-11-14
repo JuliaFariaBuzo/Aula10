@@ -34,14 +34,29 @@ app.post('/alunos',(req,res)=>{
     db.QUERY(SQL, [nome, cidade, estado], (err, result) => {
 
         if(err){
-            return res.status(500).json({ error: 'Erro ao cadastrar aluno!'})
+            return res.status(500).json({ error: 'Erro ao cadastrar aluno!'});
         }
-        res.status(201).json({message: 'Aluno cadastrado com sucesso!', id: result.isertId})
+        res.status(201).json({message: 'Aluno cadastrado com sucesso!', id: result.isertId});
 
     });
 });
 
-
 app.listen(PORT,()=>{
     console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
+
+//Rotac consulta aluno
+app.get('/alunos',(req,res)=>{
+    const {nome, cidade, estado} = req.body;
+
+    const sql = 'SELECT * FROM alunos';
+
+    db.QUERY(SQL, (err, result) => {
+
+        if(err){
+            return res.status(500).json({ error: 'Erro ao consultar aluno!'});
+        }
+        res.json(results);
+
+    });
 });
