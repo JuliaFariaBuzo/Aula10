@@ -51,7 +51,7 @@ app.get('/alunos',(req,res)=>{
 
     const sql = 'SELECT * FROM alunos';
 
-    db.QUERY(SQL, (err, result) => {
+    db.QUERY(SQL, (err, results) => {
 
         if(err){
             return res.status(500).json({ error: 'Erro ao consultar aluno!'});
