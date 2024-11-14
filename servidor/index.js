@@ -24,3 +24,14 @@ db.connect((erro) => {
         console.log('Conectado ao MySQL com sucesso!');
     }
 });
+
+//Rota para cadastrar usuário
+app.post('/alunos',(req,res)=>{
+    const {nome, cidade, estado} = req.body;
+
+    const sql = 'INSERT INTO alunos (nome, cidade, estado) VALUE (?, ?, ?)';
+
+    db.QUERY(SQL, [Nome, cidade, estado], (err, result) => {
+
+    });
+})
