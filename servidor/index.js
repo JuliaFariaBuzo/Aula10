@@ -29,14 +29,14 @@ db.connect((erro) => {
 app.post('/alunos',(req,res)=>{
     const {nome, cidade, estado} = req.body;
 
-    const sql = 'INSERT INTO alunos (nome, cidade, estado) VALUE (?, ?, ?)';
+    const sql = 'INSERT INTO alunos (nome, cidade, estado) VALUES (?, ?, ?)';
 
-    db.QUERY(SQL, [nome, cidade, estado], (err, result) => {
+    db.query(sql, [nome, cidade, estado], (err, result) => {
 
         if(err){
             return res.status(500).json({ error: 'Erro ao cadastrar aluno!'});
         }
-        res.status(201).json({message: 'Aluno cadastrado com sucesso!', id: result.isertId});
+        res.status(201).json({message: 'Aluno cadastrado com sucesso!', id: result.insertId});
 
     });
 });
@@ -51,7 +51,7 @@ app.get('/alunos',(req,res)=>{
 
     const sql = 'SELECT * FROM alunos';
 
-    db.QUERY(SQL, (err, results) => {
+    db.QUERY(sql, (err, results) => {
 
         if(err){
             return res.status(500).json({ error: 'Erro ao consultar aluno!'});
