@@ -25,7 +25,7 @@ export default function Cadastro(){
 
     return(
         <div>
-            <form>
+            <form className='destaque'>
                 <h3>Cadastro de Alunos</h3>
 
                 <p>
