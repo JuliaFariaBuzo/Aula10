@@ -1,41 +1,44 @@
-import {useEffect, useState} from 'react';
-import{useNavigate} from 'react-router-dom';
+
+import { useEffect, useState } from 'react';
+import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 
-export default function Consulta(){
+export default function Consulta()
+ {
 
-    const navagate =useNavigate();
-    const[alunos,setAlunos] =useState([]);
+    const navigate = useNavigate();
+    const [alunos, setAlunos] = useState([])
 
-    async function consultaAluno(e){
-
+    //Função para bsucar os usuários da API
+    async function consultaAlunos()
+    {
         try{
-            await axios.get('http://localhost:3001/alunos');
-            setAlunos(Response.data);
-        }
-        catch (error){
-            setResultado(error);
-        }
-    }
 
-    useEffect(()=>{
-        consultaAluno();
+            const response = await axios.get('http://localhost:3001/alunos');
+            setAlunos(response.data);
+        }catch (error) {
+            alert(error);
+        }
+    };
+
+    // Buscar usuário ao carregar o componente
+    useEffect(() => {
+        consultaAlunos();
     }, []);
-
 
     function alterar(id)
     {
-        navigate("/alteracao/"+id);
+        navigate("/alteracao/" + id);
     }
 
     function excluir(id)
     {
-        navigate("/exclusao/"+id);
+        navigate("/exclusao/" + id);
     }
 
     return(
         <div>
-             <h1 style={{textAlign:'center'}}>Lista de Alunos</h1>
+            <h1 style={{textAlign:'center'}}>Lista de Alunos</h1>
             <p>
                 tamanho: {alunos.length}
             </p>
@@ -67,5 +70,6 @@ export default function Consulta(){
             </table>
 
         </div>
+
     );
-}
+ }
